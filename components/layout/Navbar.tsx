@@ -65,39 +65,28 @@ export default function Navbar() {
             <div ref={dropdownRef} className="hidden lg:flex items-center gap-7">
               {nav.links.map((link: NavLink) =>
                 link.children ? (
-                  <div key={link.label} className="relative">
-                    <button
-                      onClick={() =>
-                        setOpenDropdown(openDropdown === link.label ? null : link.label)
-                      }
-                      className="flex items-center gap-1 text-[0.78rem] tracking-[0.12em] uppercase font-sans text-ink hover:text-primary transition-colors duration-200"
-                      aria-expanded={openDropdown === link.label}
+                  <div key={link.label} className="relative group py-2">
+                    <Link
+                      href={link.href}
+                      className="text-[0.78rem] tracking-[0.12em] uppercase font-sans text-ink hover:text-primary transition-colors duration-200 cursor-pointer"
                     >
                       {link.label}
-                      <svg
-                        className={clsx("w-3 h-3 transition-transform duration-200", openDropdown === link.label && "rotate-180")}
-                        viewBox="0 0 12 12"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                      >
-                        <path d="M2 4l4 4 4-4" />
-                      </svg>
-                    </button>
-                    {openDropdown === link.label && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-52 bg-white shadow-soft rounded-lg py-2 border border-[#E8E3DC]">
+                    </Link>
+
+                    {/* Frameless hover dropdown matching screenshot UI */}
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-50 min-w-[220px]">
+                      <div className="flex flex-col items-center gap-3.5 py-4 bg-[#F7F3EE]/95 backdrop-blur-sm rounded-b-md">
                         {link.children.map((child) => (
                           <Link
                             key={child.label}
                             href={child.href}
-                            onClick={() => setOpenDropdown(null)}
-                            className="block px-5 py-2.5 text-[0.78rem] text-ink hover:text-primary hover:bg-primary-soft transition-colors duration-150"
+                            className="text-[0.74rem] tracking-[0.14em] uppercase font-sans text-ink text-center hover:underline underline-offset-4 decoration-ink/80 transition-all duration-150 whitespace-nowrap"
                           >
                             {child.label}
                           </Link>
                         ))}
                       </div>
-                    )}
+                    </div>
                   </div>
                 ) : (
                   <Link
