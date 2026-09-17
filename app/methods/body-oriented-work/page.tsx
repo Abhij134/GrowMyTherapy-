@@ -20,7 +20,7 @@ export default function BodyOrientedPage() {
       ctaSubtext={page.ctaSubtext}
       ctaButton={page.ctaButton}
       ctaFootnote={page.ctaFootnote}
-      ctaBackgroundImage={page.ctaBackgroundImage || "/cta-trauma.png"}
+      ctaBackgroundImage={(page as any).ctaBackgroundImage || "/cta-trauma.png"}
       heroTextClassName="lg:mr-[-220px]"
       heroImageClassName="lg:-mt-160 lg:-left-18"
       heroImageSrc="/images/Gemini_Generated_Image_12ynsm12ynsm12yn.png"

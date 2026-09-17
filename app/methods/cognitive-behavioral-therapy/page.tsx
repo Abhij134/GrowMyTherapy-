@@ -20,7 +20,7 @@ export default function CBTPage() {
       ctaSubtext={page.ctaSubtext}
       ctaButton={page.ctaButton}
       ctaFootnote={page.ctaFootnote}
-      ctaBackgroundImage={page.ctaBackgroundImage || "/cta-beach-2.png"}
+      ctaBackgroundImage={(page as any).ctaBackgroundImage || "/cta-beach-2.png"}
       heroTextClassName="lg:mr-[-190px]"
       heroImageClassName="lg:-mt-170 lg:-left-18"
       heroImageSrc="/images/Gemini_Generated_Image_m2q7nzm2q7nzm2q7.png"

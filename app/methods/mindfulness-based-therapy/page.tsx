@@ -20,7 +20,7 @@ export default function MindfulnessPage() {
       ctaSubtext={page.ctaSubtext}
       ctaButton={page.ctaButton}
       ctaFootnote={page.ctaFootnote}
-      ctaBackgroundImage={page.ctaBackgroundImage || "/cta-beach-2.png"}
+      ctaBackgroundImage={(page as any).ctaBackgroundImage || "/cta-beach-2.png"}
       heroTextClassName="lg:mr-[-80px]"
       heroImageClassName="lg:-mt-160 lg:-left-18"
       heroImageSrc="/images/hero_anxiety.png"

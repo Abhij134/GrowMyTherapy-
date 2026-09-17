@@ -20,7 +20,7 @@ export default function EMDRMethodPage() {
       ctaSubtext={page.ctaSubtext}
       ctaButton={page.ctaButton}
       ctaFootnote={page.ctaFootnote}
-      ctaBackgroundImage={page.ctaBackgroundImage || "/cta-transitions.png"}
+      ctaBackgroundImage={(page as any).ctaBackgroundImage || "/cta-transitions.png"}
       heroTextClassName="lg:mr-[-20px]"
       heroImageClassName="lg:-mt-160 lg:-left-18"
       heroImageSrc="/images/hero_emdr.png"
