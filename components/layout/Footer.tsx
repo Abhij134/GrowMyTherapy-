@@ -82,7 +82,7 @@ export default function Footer() {
       {/* Bottom Full-Width Teal Strip (#86B3B3) matching reference screenshot 1:1 */}
       <div className="bg-[#86B3B3] py-2 pl-6 lg:pl-[120px] pr-6 lg:pr-[120px] text-white text-[14px] sm:text-[15px] font-sans font-light flex flex-col sm:flex-row items-center justify-between gap-3">
         <div className="flex items-center gap-2.5 text-white/95">
-          <Link href="/privacy" className="hover:underline">Terms</Link>
+          <Link href="/terms" className="hover:underline">Terms</Link>
           <span>|</span>
           <Link href="/privacy" className="hover:underline">Privacy Policy</Link>
           <span>|</span>
