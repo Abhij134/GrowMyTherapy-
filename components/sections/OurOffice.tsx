@@ -1,26 +1,27 @@
-import Image from "next/image";
 import { ourOffice } from "@/lib/content";
+import Image from "next/image";
 
 export default function OurOffice() {
   return (
-    <section id="office" className="bg-secondary py-20 md:py-28">
+    <section id="office" className="bg-[#e3d9ca] py-20 md:py-28 lg:py-32 border-t border-ink/5 overflow-hidden">
       <div className="site-container">
-        {/* Heading + intro copy */}
-        <div className="max-w-[580px] mb-12">
-          <h2 className="font-serif text-[2rem] md:text-[2.6rem] text-ink mb-5 leading-[1.15]">
+        {/* Heading & Subtag */}
+        <div className="max-w-[640px] mb-12 md:mb-18 relative lg:left-[50px]">
+          <span className="section-subtag inline-block mb-20">Our Space</span>
+          <h2 className="font-serif text-[36px] sm:text-[44px] md:text-[50px] lg:text-[54px] font-light text-ink mb-5 leading-none tracking-tight">
             {ourOffice.heading}
           </h2>
-          <p className="font-sans text-[0.95rem] md:text-[1rem] leading-[1.85] text-muted">
+          <p className="font-sans text-[0.95rem] md:text-[1rem] leading-[1.75] text-muted">
             {ourOffice.body}
           </p>
         </div>
 
         {/* 3-image horizontal gallery */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5 mb-13 lg:max-w-[1100px] relative lg:left-[140px]">
           {ourOffice.images.map((img, i) => (
             <div
               key={i}
-              className="relative w-full aspect-[4/3] overflow-hidden rounded-sm"
+              className="relative w-full aspect-[3/4] overflow-hidden"
             >
               <Image
                 src={img.src}
@@ -33,35 +34,21 @@ export default function OurOffice() {
           ))}
         </div>
 
-        {/* Address badge + session note */}
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 items-start sm:items-center">
-          {/* Address badge */}
+        {/* Address + session note */}
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 items-start sm:items-center relative lg:left-[140px]">
           <div className="flex items-start gap-3">
             <span className="text-primary mt-0.5" aria-hidden="true">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.8"
-              >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                 <path d="M12 21s-8-6.895-8-12a8 8 0 0 1 16 0c0 5.105-8 12-8 12z" />
                 <circle cx="12" cy="9" r="2.5" />
               </svg>
             </span>
-            <div>
-              <p className="font-sans text-[0.85rem] text-ink font-medium">
-                {ourOffice.address}
-              </p>
-            </div>
+            <p className="font-sans text-[0.92rem] text-ink font-medium">
+              {ourOffice.address}
+            </p>
           </div>
-
-          {/* Divider on desktop */}
-          <span className="hidden sm:block w-px h-8 bg-[#DDD8D0]" aria-hidden="true" />
-
-          {/* Session note */}
-          <p className="font-sans text-[0.82rem] tracking-[0.08em] text-muted">
+          <span className="hidden sm:block w-px h-8 bg-ink/15" aria-hidden="true" />
+          <p className="font-sans text-[0.88rem] tracking-[0.05em] text-muted">
             {ourOffice.sessionNote}
           </p>
         </div>

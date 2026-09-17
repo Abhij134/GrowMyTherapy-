@@ -4,17 +4,21 @@ import { services } from "@/lib/content";
 
 export default function HowICanHelp() {
   return (
-    <section id="services" className="bg-cream py-20 md:py-28">
-      <div className="site-container">
-        {/* Section heading */}
-        <div className="mb-14">
-          <h2 className="font-serif text-[2rem] md:text-[2.6rem] text-ink">
-            How I Can Help
+    <section id="services" className="bg-white py-20 sm:py-24 md:py-28 lg:py-25 border-t border-stone-200/50">
+      <div className="max-w-[1320px] ml-0 lg:ml-[30px] px-6 sm:px-10 md:px-16 lg:px-20">
+
+        {/* Section Heading matching reference photo */}
+        <div className="mb-12 sm:mb-14 md:mb-16">
+          <h2 className="font-serif text-[36px] sm:text-[44px] md:text-[50px] lg:text-[54px] font-light text-ink tracking-tight leading-none">
+            How I Can{" "}
+            <span className="font-script text-primary text-[1em] font-normal leading-none inline-block ml-2 relative top-[2px]">
+              help
+            </span>
           </h2>
         </div>
 
-        {/* 3-column card grid — anatomy: image top → title → description (matches reference) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-10">
+        {/* 3-column card grid — square 1:1 rounded images matching reference screenshot */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5 relative lg:left-[150px]">
           {services.map((service) => (
             <Link
               key={service.title}
@@ -22,8 +26,8 @@ export default function HowICanHelp() {
               className="group flex flex-col"
               id={service.title.toLowerCase().replace(/[^a-z]/g, "-")}
             >
-              {/* Image top — full width, aspect-4/3 */}
-              <div className="relative w-full aspect-[4/3] overflow-hidden mb-6">
+              {/* Image top — 3:4 portrait aspect ratio with sharp corners */}
+              <div className="relative w-full aspect-[4/5] overflow-hidden mb-6 sm:mb-7">
                 <Image
                   src={service.image.src}
                   alt={service.image.alt}
@@ -33,15 +37,18 @@ export default function HowICanHelp() {
                 />
               </div>
 
-              {/* Title — serif, no card border (matches reference) */}
-              <h3 className="font-serif text-[1.45rem] text-ink mb-3 group-hover:text-primary transition-colors duration-200">
-                {service.title}
-              </h3>
+              {/* Text aligned with the left edge of the image */}
+              <div className="pr-[10px]">
+                {/* Title — light serif heading */}
+                <h3 className="font-serif text-[22px] sm:text-[25px] lg:text-[28px] font-medium text-ink mb-6 group-hover:text-primary transition-colors duration-200 leading-snug">
+                  {service.title}
+                </h3>
 
-              {/* Description */}
-              <p className="font-sans text-[0.9rem] leading-relaxed text-muted">
-                {service.description}
-              </p>
+                {/* Description — light sans-serif body in sentence case */}
+                <p className="font-sans text-[14px] sm:text-[16px] leading-[1.75] text-muted ">
+                  {service.description}
+                </p>
+              </div>
             </Link>
           ))}
         </div>

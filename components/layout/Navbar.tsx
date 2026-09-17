@@ -36,7 +36,9 @@ export default function Navbar() {
     } else {
       document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   return (
@@ -45,42 +47,42 @@ export default function Navbar() {
         className={clsx(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled
-            ? "bg-[#F7F3EE]/95 backdrop-blur-sm shadow-[0_1px_20px_rgba(28,43,53,0.08)]"
-            : "bg-[#F7F3EE]"
+            ? "bg-[#F6F4EE]/95 backdrop-blur-md shadow-[0_1px_15px_rgba(43,43,43,0.05)]"
+            : "bg-[#F6F4EE]"
         )}
       >
-        <div className="site-container">
-          <nav className="flex items-center justify-between h-[80px]" aria-label="Main navigation">
-            {/* Logo */}
-            <Link href="/" className="flex flex-col leading-none group" aria-label="Home">
-              <span className="font-serif text-[1.35rem] font-normal text-ink tracking-tight group-hover:text-primary transition-colors duration-200">
-                Maya Reynolds
+        <div className="max-w-[1500px] mx-auto px-[4vw]">
+          <nav className="flex items-center justify-between h-[120px]" aria-label="Main navigation">
+            {/* Logo — prominent & elegant font scaling */}
+            <Link href="/" className="flex flex-col group py-1" aria-label="Home">
+              <span className="font-serif text-[25px] sm:text-[40px] font-normal text-[#2B2B2B] leading-[1.15] tracking-[-0.04em] group-hover:text-[#749D97] transition-colors duration-200">
+                Dr. Maya Reynolds, PsyD
               </span>
-              <span className="text-[0.65rem] tracking-[0.18em] uppercase text-muted font-sans font-light mt-0.5">
-                PsyD · Clinical Psychologist
+              <span className="text-[13px] tracking-[0.2em] uppercase text-[#86B3B3] font-sans font-medium mt-[2px] ml-1 sm:ml-[34px]">
+                CLINICAL PSYCHOLOGY
               </span>
             </Link>
 
-            {/* Desktop nav */}
-            <div ref={dropdownRef} className="hidden lg:flex items-center gap-7">
+            {/* Desktop nav links — larger text & clear letter spacing */}
+            <div ref={dropdownRef} className="hidden lg:flex items-center gap-[42px]">
               {nav.links.map((link: NavLink) =>
                 link.children ? (
                   <div key={link.label} className="relative group py-2">
                     <Link
                       href={link.href}
-                      className="text-[0.78rem] tracking-[0.12em] uppercase font-sans text-ink hover:text-primary transition-colors duration-200 cursor-pointer"
+                      className="text-[13px] tracking-[0.2em] uppercase font-sans font-medium text-[#2B2B2B] hover:text-[#749D97] transition-colors duration-200 cursor-pointer"
                     >
                       {link.label}
                     </Link>
 
-                    {/* Frameless hover dropdown matching screenshot UI */}
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-50 min-w-[220px]">
-                      <div className="flex flex-col items-center gap-3.5 py-4 bg-[#F7F3EE]/95 backdrop-blur-sm rounded-b-md">
+                    {/* Dropdown menu */}
+                    <div className="absolute top-full right-0 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-50 min-w-[240px]">
+                      <div className="flex flex-col items-end gap-3 py-4 pl-8 bg-[#F6F4EE]">
                         {link.children.map((child) => (
                           <Link
                             key={child.label}
                             href={child.href}
-                            className="text-[0.74rem] tracking-[0.14em] uppercase font-sans text-ink text-center hover:underline underline-offset-4 decoration-ink/80 transition-all duration-150 whitespace-nowrap"
+                            className="text-[13px] tracking-[0.18em] uppercase font-sans text-[#2B2B2B] hover:underline underline-offset-4 transition-all duration-150 text-right whitespace-nowrap py-1.5 w-full"
                           >
                             {child.label}
                           </Link>
@@ -92,23 +94,23 @@ export default function Navbar() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="text-[0.78rem] tracking-[0.12em] uppercase font-sans text-ink hover:text-primary transition-colors duration-200"
+                    className="text-[13px] tracking-[0.2em] uppercase font-sans font-medium text-[#2B2B2B] hover:text-[#749D97] transition-colors duration-200"
                   >
                     {link.label}
                   </Link>
                 )
               )}
 
-              {/* CONTACT pill */}
+              {/* CONTACT pill button — larger text & generous padding */}
               <Link
-                href={contact.bookingUrl}
-                className="ml-2 text-[0.72rem] tracking-[0.14em] uppercase font-sans text-ink border border-ink rounded-full px-5 py-2 hover:bg-ink hover:text-[#F7F3EE] transition-all duration-200"
+                href={contact.bookingUrl || "/contact"}
+                className="text-[12px] tracking-[0.2em] uppercase font-sans font-medium text-[#2B2B2B] border border-[#2B2B2B] rounded-full px-[31px] py-[10px] hover:bg-[#2B2B2B] hover:text-[#F6F4EE] transition-all duration-200 inline-flex items-center justify-center min-w-[140px]"
               >
-                {nav.cta.label}
+                CONTACT
               </Link>
             </div>
 
-            {/* Mobile hamburger */}
+            {/* Mobile menu trigger */}
             <button
               className="lg:hidden flex flex-col gap-[5px] p-2"
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -117,19 +119,19 @@ export default function Navbar() {
             >
               <span
                 className={clsx(
-                  "block w-6 h-[1.5px] bg-ink transition-all duration-300",
+                  "block w-6 h-[1.5px] bg-[#2B2B2B] transition-all duration-300",
                   mobileOpen && "translate-y-[6.5px] rotate-45"
                 )}
               />
               <span
                 className={clsx(
-                  "block w-6 h-[1.5px] bg-ink transition-all duration-300",
+                  "block w-6 h-[1.5px] bg-[#2B2B2B] transition-all duration-300",
                   mobileOpen && "opacity-0"
                 )}
               />
               <span
                 className={clsx(
-                  "block w-6 h-[1.5px] bg-ink transition-all duration-300",
+                  "block w-6 h-[1.5px] bg-[#2B2B2B] transition-all duration-300",
                   mobileOpen && "-translate-y-[6.5px] -rotate-45"
                 )}
               />
@@ -141,28 +143,28 @@ export default function Navbar() {
       {/* Mobile overlay menu */}
       <div
         className={clsx(
-          "fixed inset-0 z-40 bg-[#F7F3EE] flex flex-col pt-[80px] transition-all duration-300 lg:hidden",
+          "fixed inset-0 z-40 bg-[#F6F4EE] flex flex-col pt-[105px] overflow-y-auto pb-10 transition-all duration-300 lg:hidden",
           mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
       >
-        <div className="site-container py-8 flex flex-col gap-6">
+        <div className="site-container py-6 flex flex-col gap-4">
           {nav.links.map((link: NavLink) => (
             <div key={link.label}>
               <Link
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="block font-serif text-2xl text-ink hover:text-primary transition-colors duration-200"
+                className="block font-serif text-2xl text-[#2B2B2B] hover:text-[#749D97] transition-colors duration-200"
               >
                 {link.label}
               </Link>
               {link.children && (
-                <div className="mt-3 pl-4 flex flex-col gap-2 border-l border-[#E8E3DC]">
+                <div className="mt-3 pl-4 flex flex-col gap-2 border-l border-[#2B2B2B]/15">
                   {link.children.map((child) => (
                     <Link
                       key={child.label}
                       href={child.href}
                       onClick={() => setMobileOpen(false)}
-                      className="text-sm text-muted hover:text-primary transition-colors duration-200"
+                      className="text-sm text-[#2B2B2B]/70 hover:text-[#749D97] transition-colors duration-200"
                     >
                       {child.label}
                     </Link>
@@ -171,16 +173,25 @@ export default function Navbar() {
               )}
             </div>
           ))}
-          <div className="mt-4 pt-6 border-t border-[#E8E3DC]">
+          <div>
             <Link
-              href={contact.bookingUrl}
+              href="/contact"
               onClick={() => setMobileOpen(false)}
-              className="inline-block text-[0.8rem] tracking-[0.14em] uppercase font-sans text-ink border border-ink rounded-full px-6 py-3 hover:bg-ink hover:text-[#F7F3EE] transition-all duration-200"
+              className="block font-serif text-2xl text-[#2B2B2B] hover:text-[#749D97] transition-colors duration-200"
             >
-              {nav.cta.label}
+              Contact
             </Link>
           </div>
-          <div className="mt-auto pt-8 text-sm text-muted">
+          <div className="mt-4 pt-6 border-t border-[#2B2B2B]/15">
+            <Link
+              href={contact.bookingUrl || "/contact"}
+              onClick={() => setMobileOpen(false)}
+              className="inline-block text-[11px] tracking-[0.22em] uppercase font-sans text-[#2B2B2B] border border-[#2B2B2B] rounded-full px-7 py-3 hover:bg-[#2B2B2B] hover:text-[#F6F4EE] transition-all duration-200"
+            >
+              CONTACT
+            </Link>
+          </div>
+          <div className="mt-auto pt-8 text-xs text-[#2B2B2B]/60 tracking-wider">
             <p>{site.credential}</p>
             <p className="mt-1">{contact.address}</p>
           </div>

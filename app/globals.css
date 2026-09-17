@@ -1,40 +1,50 @@
 @import "tailwindcss";
 
 /* =============================================================================
-   Tailwind v4 CSS-first theme — all design tokens defined here
+   Conejo Valley Counseling exact cloned typography system & design tokens
    ============================================================================= */
 
-@theme {
-  /* Fonts */
-  --font-serif: var(--font-playfair), Georgia, serif;
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-script: var(--font-playfair), Georgia, serif;
+@font-face {
+  font-family: 'PrintedMoments';
+  src: url('https://static1.squarespace.com/static/670423e106da6c036366fd10/t/67042f1ac94bbb494649b8e4/1728327450432/printedmoments-webfont.woff') format('woff');
+  font-weight: 300 400;
+  font-style: normal;
+  font-display: swap;
+}
 
-  /* Colors */
-  --color-primary: #2C6E8A;
-  --color-primary-dark: #1E5470;
-  --color-primary-soft: #EAF2F5;
-  --color-secondary: #F7F3EE;
-  --color-cream: #F7F4EF;
+@theme {
+  /* Fonts matching beaufort-pro, gravesend-sans & PrintedMoments */
+  --font-serif: var(--font-serif), "Lora", "beaufort-pro", Georgia, serif;
+  --font-sans: var(--font-sans), "Mulish", "gravesend-sans", system-ui, sans-serif;
+  --font-script: "PrintedMoments", var(--font-alex-brush), "Alex Brush", cursive, serif;
+
+  /* Colors with user's exact requested #F6F4EE landing background */
+  --color-primary: #86B3B3;
+  --color-primary-dark: #58807A;
+  --color-primary-soft: #EBF3F2;
+  --color-secondary: #F6F4EE;
+  --color-cream: #F6F4EE;
+  --color-sand: #E3D9CA;
   --color-accent: #C8856A;
   --color-accent-dark: #A8684F;
   --color-accent-soft: #F4E3DA;
-  --color-ink: #1C2B35;
-  --color-muted: #5C6B75;
+  --color-ink: #2B2B2B;
+  --color-muted: #556359;
 
   /* Spacing / layout */
-  --max-width-site: 1280px;
+  --max-width-site: 1500px;
 
   /* Box shadows */
-  --shadow-soft: 0 20px 60px rgba(28, 43, 53, 0.10);
-  --shadow-card: 0 4px 24px rgba(28, 43, 53, 0.07);
+  --shadow-soft: 0 20px 60px rgba(44, 49, 46, 0.08);
+  --shadow-card: 0 4px 24px rgba(44, 49, 46, 0.05);
 }
 
 /* =============================================================================
-   Base resets
+   Base resets & site-wide font rules
    ============================================================================= */
 
 @layer base {
+
   *,
   *::before,
   *::after {
@@ -50,15 +60,19 @@
   }
 
   body {
-    background-color: var(--color-secondary);
+    background-color: #F6F4EE;
     color: var(--color-ink);
     font-family: var(--font-sans);
-    line-height: 1.7;
+    line-height: 1.75;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-serif);
-    line-height: 1.15;
+    font-weight: 300;
+    line-height: 1.2;
     color: var(--color-ink);
   }
 
@@ -74,33 +88,64 @@
 }
 
 /* =============================================================================
-   Shared utility classes (used across multiple components)
+   Shared utility classes matching Conejo Valley Counseling
    ============================================================================= */
 
-/* Script / italic accent word in headings */
-.font-script {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 400;
+/* Script / italic accent word in headings matching target site strong em / PrintedMoments */
+.font-script, h1 em, h2 em, h3 em, h4 em {
+  font-family: 'PrintedMoments', var(--font-alex-brush), "Alex Brush", cursive, serif !important;
+  font-style: normal !important;
+  font-weight: 300 !important;
+  letter-spacing: 0em;
   color: var(--color-primary);
 }
 
 /* Underlined CTA link — matches reference "BOOK AN APPOINTMENT" style */
 .cta-link {
   display: inline-block;
-  font-size: 0.72rem;
-  letter-spacing: 0.15em;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   font-family: var(--font-sans);
   color: var(--color-ink);
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 2px;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  position: relative;
+  padding-bottom: 4px;
 }
 
-.cta-link:hover {
-  color: var(--color-primary);
-  border-color: var(--color-primary);
+.cta-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #515151;
+  transition: right 1s ease;
+}
+
+.cta-link:hover::after {
+  right: 100%;
+}
+
+/* Secondary Pill Button */
+.btn-pill {
+  display: inline-block;
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #2B2B2B;
+  border: 1px solid #2B2B2B;
+  border-radius: 9999px;
+  padding: 0.75rem 1.75rem;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-pill:hover {
+  background-color: #2B2B2B;
+  color: #F6F4EE;
 }
 
 /* Site-wide container */
@@ -108,11 +153,5 @@
   width: 100%;
   max-width: var(--max-width-site);
   margin-inline: auto;
-  padding-inline: 2rem;
-}
-
-@media (min-width: 1024px) {
-  .site-container {
-    padding-inline: 4rem;
-  }
+  padding-inline: 5vw;
 }
